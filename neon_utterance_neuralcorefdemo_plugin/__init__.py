@@ -49,9 +49,10 @@ class NeuralCoreferenceDemo(UtteranceTransformer):
         context = context or {}
         lang = context.get("lang", "en-us")
         # replace coreferences
-        utterances += [self.solve_corefs(utt, lang) for utt in utterances]
-        # return unchanged utterances + data
-        return utterances, {}
+        solved = [self.solve_corefs(utt, lang) for utt in utterances]
+        solved = [u for u in solved if u not in utterances]
+        # return augmented utterances
+        return solved + utterances, {}
 
 
 

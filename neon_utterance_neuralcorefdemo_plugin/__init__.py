@@ -29,9 +29,12 @@
 # check https://github.com/OpenJarbas/simple_NER
 from neon_transformers import UtteranceTransformer
 import requests
+from neon_transformers.tasks import UtteranceTask
 
 
 class NeuralCoreferenceDemo(UtteranceTransformer):
+    task = UtteranceTask.COREFERENCE_RESOLUTION
+
     def __init__(self, name="neuralcoref_demo", priority=5):
         super().__init__(name, priority)
 
